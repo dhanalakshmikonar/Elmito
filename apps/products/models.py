@@ -123,7 +123,12 @@ class ProductVariant(TimeStampedModel):
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="variants")
     color = models.CharField(max_length=40)
-    color_hex = models.CharField(max_length=7, default="#000000")
+    color_hex = models.CharField(
+        "Swatch color (name or hex)",
+        max_length=40,
+        default="#000000",
+        help_text="Enter a CSS color name such as navy or a hex value such as #1a2b3c.",
+    )
     size = models.CharField(max_length=3, choices=Size.choices)
     sku = models.CharField("SKU", max_length=50, unique=True)
     stock = models.PositiveIntegerField(default=0)
